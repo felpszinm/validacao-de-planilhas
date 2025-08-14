@@ -44,7 +44,7 @@ placas_e_datas_list = []
 # Para cada linha dentro de DB_GERAL
 for linha in range(2, rotas.max_row):
 
-    #Se caso a linha de rota for vazia, ele para de adicionar placas e datas   
+    #Se caso a linha de datas em rota for vazia, ele para de adicionar placas e datas   
     if rotas[f'C{linha}'].value is None:
         print('Sua lista de placas chegou ao fim!')
         break
@@ -67,6 +67,10 @@ for placa_na_lista in placas_e_datas_list:
     idx_placas = 1   
     data = placa_na_lista[idx_datas]
     placa = placa_na_lista[idx_placas]
+    if placa is not None:
+        placa = placa_na_lista[idx_placas].replace('-','')
+    else:
+        continue
 
     # Adiciona esses valores na planilha:
     controle_rentals_com_formulas.cell(idx_linhas, column=2).value = data
