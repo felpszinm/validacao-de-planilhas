@@ -104,5 +104,3 @@ for placa_na_lista in placas_e_datas_list:
 # Por fim salva a planilha.
 arquivo_com_formulas.save(FILE_PATH)
 print('Seu programa foi concluido com sucesso!✅')
-
-# //TODO: Criar um verificador para se caso a placa tiver '-', retirar o traço e salva-la sem.
