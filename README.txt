@@ -56,7 +56,6 @@ COMO USAR
 
 MELHORIAS FUTURAS
 -----------------
-- Remover automaticamente traços ("-") das placas.
 - Criar logs detalhados de execução.
 - Permitir parametrização de caminhos e arquivos.
 

@@ -82,6 +82,7 @@ for placa_na_lista in placas_e_datas_list:
         placa_manu = manutencao.cell(manu_linhas, column=1).value
         data_entrada = manutencao.cell(manu_linhas, column=4).value
         data_saida = manutencao.cell(manu_linhas, column=5).value
+        data_rota = datetime.strptime(data, '%d/%m/%Y')
 
         # Se a data_saida for string, ele transforma em datetime:
         if isinstance(data_saida, str):
@@ -92,10 +93,13 @@ for placa_na_lista in placas_e_datas_list:
                 
         # Se a placa for igual a placa dentro da manutenção, ele vai alterar 'verificar_manutencao' para 'SIM':
         if placa_manu == placa:
-            if isinstance(data_entrada, datetime):
-                if data_referencia >= data_entrada and (data_saida is None or data_referencia <= data_saida):
-                    verificar_manutencao = 'SIM'
-                    break
+            try:
+                if isinstance(data_entrada, datetime) and isinstance(data_rota, datetime):
+                    if data_referencia >= data_entrada and (data_saida is None or data_referencia <= data_saida) and data_rota < data_saida:
+                        verificar_manutencao = 'SIM'
+                        break
+            except TypeError:
+                verificar_manutencao = 'SIM'
     
     # Adiciona o valor na planilha:
     controle_rentals_com_formulas.cell(idx_linhas, column=9).value = verificar_manutencao
